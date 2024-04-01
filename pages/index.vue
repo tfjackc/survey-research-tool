@@ -17,13 +17,19 @@
           </ClientOnly>
         </v-col>
       </v-row>
-      <v-navigation-drawer
-          v-model="drawer"
-          location="bottom"
-          temporary
-      >
-        <TableComponent />
-      </v-navigation-drawer>
+      <v-row>
+        <v-col>
+          <TableComponent />
+        </v-col>
+      </v-row>
+<!--      <v-navigation-drawer-->
+<!--          v-model="drawer"-->
+<!--          location="bottom"-->
+<!--          temporary-->
+<!--      >-->
+<!--        <TableComponent />-->
+<!--      </v-navigation-drawer>-->
+
     </v-main>
   </v-app>
 </template>

@@ -2,7 +2,6 @@
   <div class="tablediv">
     <v-fade-transition>
       <v-data-table
-        v-if="filteredData.length > 0"
         items-per-page="5"
         :items="filteredData"
         :headers="headers"

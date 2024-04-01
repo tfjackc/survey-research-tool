@@ -339,7 +339,7 @@ export const useMappingStore = defineStore("mapping_store", {
         // },
         async iterateFeatureSet(featureSets: any[]) {
             // Directly use a map and flatten approach to transform and concatenate the attributes arrays.
-            const featuresAttributes = featureSets.flatMap(featureSet => featureSet.features?.map(feature => feature.attributes) || []);
+            const featuresAttributes = featureSets.flatMap(featureSet => featureSet.features?.map((feature: { attributes: any; }) => feature.attributes) || []);
             this.featureAttributes.push(...featuresAttributes);
         },
 
