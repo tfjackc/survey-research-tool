@@ -54,7 +54,7 @@
 <script setup lang="ts">
 
 import { storeToRefs } from "pinia";
-import { useMappingStore } from "~/store/mapping";
+import { useMappingStore } from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
 const { form, loading, layer_choices, survey_filter_choices, survey_filter ,default_search } = storeToRefs(mapping_store)
 const { searchedValue } = storeToRefs(mapping_store)

@@ -20,8 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import { useMappingStore } from "@/store/mapping";
+
 import { storeToRefs } from "pinia";
+import {useMappingStore} from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
 const { filteredData } = storeToRefs(mapping_store)
 const headers: [] | any =

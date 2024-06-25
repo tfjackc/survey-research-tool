@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang ="ts">
-import Search from "~/components/Search.vue";
-import Map from "~/components/Map.vue";
+
+
 import { useMappingStore } from "~/store/mapping";
 import {storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";

@@ -1,15 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  future
+      : {
+    compatibilityVersion
+        : 4,
+  },
   devtools: {
     enabled: true,
-
     timeline: {
       enabled: true
     }
   },
-  modules: ['@pinia/nuxt',
-    'vuetify-nuxt-module'],
-  css: ['~/assets/css/main.css'],
+  modules: ['@pinia/nuxt', 'vuetify-nuxt-module', "@nuxt/image"],
+  css: ['assets/css/main.css'],
   vuetify: {
     vuetifyOptions: {
       theme: {

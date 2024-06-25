@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {initialize} from "~/gis/map";
+import {initialize} from "~~/app/gis/map";
 import MapView from "@arcgis/core/views/MapView";
 import {
     addressPointLayer,
@@ -14,11 +14,11 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
-} from "~/gis/layers";
+} from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
-import {keys} from "~/gis/keys";
-import {addressFields, surveyFields, taxlotFields} from "~/gis/layer_info";
+import {keys} from "~~/app/gis/keys";
+import {addressFields, surveyFields, taxlotFields} from "~~/app/gis/layer_info";
 import Graphic from "@arcgis/core/Graphic";
 import FeatureSet from "@arcgis/core/rest/support/FeatureSet";
 import Query from "@arcgis/core/rest/support/Query";
@@ -411,7 +411,7 @@ export const useMappingStore = defineStore("mapping_store", {
                             extent.union(survey.geometry.extent);
                             return extent;
                         },
-                        fset.features[0].geometry.extent
+                        fset.features[0]?.geometry.extent ?? {}
                     );
 
                     console.log("Graphics extent:", graphicsExtent);

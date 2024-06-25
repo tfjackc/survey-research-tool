@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMappingStore } from "~/store/mapping";
+import { useMappingStore } from "~~/app/store/mapping";
 import { storeToRefs } from "pinia";
 const mapping_store = useMappingStore()
 const {

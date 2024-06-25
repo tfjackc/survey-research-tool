@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useMappingStore } from "~/store/mapping";
+import { useMappingStore } from "~~/app/store/mapping";
 import { surveyLayer } from "~/gis/layers";
 
 const app = useMappingStore()
