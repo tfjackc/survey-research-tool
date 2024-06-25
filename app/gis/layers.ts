@@ -159,4 +159,6 @@ export const circleSymbol = new SimpleMarkerSymbol({
     xoffset: 0,
     yoffset: 0
 });
+
+export const sketchGraphicsLayer = new GraphicsLayer({});
 // -------------- graphics -----------------

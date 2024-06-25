@@ -1,11 +1,14 @@
+import {sketchGraphicsLayer} from "~/gis/layers";
+
 const BASEMAP = "topo-vector";
 
 export async function initialize(container: HTMLDivElement) {
-    const [{ default: Map }, { default: MapView }, { default: Home }] =
+    const [{ default: Map }, { default: MapView }, { default: Home }, {default: Sketch}] =
         await Promise.all([
             import("@arcgis/core/Map"),
             import("@arcgis/core/views/MapView"),
             import("@arcgis/core/widgets/Home"),
+            import("@arcgis/core/widgets/Sketch")
         ]);
 
     const map = new Map({
@@ -34,7 +37,14 @@ export async function initialize(container: HTMLDivElement) {
         view: view,
     });
 
+    const sketch = new Sketch({
+        layer: sketchGraphicsLayer,
+        view: view,
+        creationMode: "update"
+    });
+
     view.ui.add(homeWidget, "top-left");
+    view.ui.add(sketch, "top-right");
 
     await view.when();
     return view.when();

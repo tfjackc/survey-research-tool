@@ -21,8 +21,8 @@
 </template>
 <script lang="ts" setup>
 import Disclaimer from "~~/app/components/Disclaimer.vue";
-import { useMappingStore } from "~~/app/store/mapping";
-import { storeToRefs } from "pinia";
-const mapping_store = useMappingStore()
-const { drawer, returnCount } = storeToRefs(mapping_store)
+//import { useMappingStore } from "~~/app/store/mapping";
+//import { storeToRefs } from "pinia";
+//const mapping_store = useMappingStore()
+//const { drawer, returnCount } = storeToRefs(mapping_store)
 </script>
