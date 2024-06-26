@@ -5,7 +5,7 @@
         items-per-page="5"
         :items="filteredData"
         :headers="headers"
-        class="elevation-10"
+        class="elevation-2"
         :hover=true
         item-key="cs"
       >

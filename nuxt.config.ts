@@ -11,12 +11,12 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  modules: ['@pinia/nuxt', 'vuetify-nuxt-module', "@nuxt/image"],
+  modules: ['@pinia/nuxt', 'vuetify-nuxt-module', "@nuxt/image", 'nuxt-icons'],
   css: ['assets/css/main.css'],
   vuetify: {
     vuetifyOptions: {
       theme: {
-        defaultTheme: 'dark',
+        defaultTheme: 'light',
         themes: {
           dark: {
             colors: {
