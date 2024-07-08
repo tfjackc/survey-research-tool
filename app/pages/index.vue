@@ -1,5 +1,4 @@
 <template>
-  <v-app id="inspire">
     <v-main class="bg-shades-dark-gray">
     <v-row>
         <v-col cols="4">
@@ -23,12 +22,9 @@
         </v-col>
       </v-row>
     </v-main>
-  </v-app>
 </template>
 
 <script setup lang ="ts">
-
-
 import { useMappingStore } from "~/store/mapping";
 import {storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";

@@ -3,6 +3,7 @@
   <v-list-item>
     <v-checkbox
       class="top-box"
+      :class="{ 'text-stone-50': theme.global.current.value.dark, 'text-stone-900': !theme.global.current.value.dark }"
       :model-value="surveyLayerCheckbox"
       label="Survey Layer"
       @change="mapping_store.surveyLayerCheck($event)"

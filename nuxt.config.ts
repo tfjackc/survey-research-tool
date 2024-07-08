@@ -1,24 +1,21 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  future
-      : {
-    compatibilityVersion
-        : 4,
+  future: {
+    compatibilityVersion: 4,
   },
   devtools: {
     enabled: true,
     timeline: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
   modules: [
     '@pinia/nuxt',
     'vuetify-nuxt-module',
-    "@nuxt/image",
+    '@nuxt/image',
     'nuxt-icons',
-    "@nuxtjs/tailwindcss"
+    '@nuxtjs/tailwindcss',
   ],
-  css: ['assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
   vuetify: {
     vuetifyOptions: {
       theme: {
@@ -34,7 +31,7 @@ export default defineNuxtConfig({
       },
       icons: {
         defaultSet: 'mdi',
-      }
-    }
-  }
+      },
+    },
+  },
 })
