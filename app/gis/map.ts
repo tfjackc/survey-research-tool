@@ -46,6 +46,10 @@ export async function initialize(container: HTMLDivElement) {
     view.ui.add(homeWidget, "top-left");
     view.ui.add(sketch, "top-right");
 
+    sketch.on("update", (event) => {
+        console.log("sketch update event", event);
+    });
+
     await view.when();
     return view.when();
 }

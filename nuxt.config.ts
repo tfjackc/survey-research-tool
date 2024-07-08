@@ -11,7 +11,13 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  modules: ['@pinia/nuxt', 'vuetify-nuxt-module', "@nuxt/image", 'nuxt-icons'],
+  modules: [
+    '@pinia/nuxt',
+    'vuetify-nuxt-module',
+    "@nuxt/image",
+    'nuxt-icons',
+    "@nuxtjs/tailwindcss"
+  ],
   css: ['assets/css/main.css'],
   vuetify: {
     vuetifyOptions: {

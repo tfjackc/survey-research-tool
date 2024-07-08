@@ -14,6 +14,7 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
+    sketchGraphicsLayer,
 } from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
@@ -81,6 +82,7 @@ export const useMappingStore = defineStore("mapping_store", {
         async addLayerToMap(layer: any) {
             if (view && layer) {
                 view.map.add(layer, 0);
+                view.map.add(sketchGraphicsLayer, 4);
             }
         },
 
@@ -453,6 +455,6 @@ export const useMappingStore = defineStore("mapping_store", {
         async maptaxlotGraphicsLayerCheck(e: any) {
             this.maptaxlotGraphicsLayerCheckbox = e.target.checked;
             maptaxlotGraphicsLayer.visible = this.maptaxlotGraphicsLayerCheckbox;
-        }
+        },
     },
 }); // end of store
