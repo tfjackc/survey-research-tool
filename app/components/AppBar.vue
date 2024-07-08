@@ -5,7 +5,7 @@
     <v-icon size="80">
       <NuxtImg src="/cc_logo.png" height="80"></NuxtImg>
     </v-icon>
-    <h2>Survey Research Tool</h2>
+    <h2 class="text-2xl font-bold">Survey Research Tool</h2>
     <v-btn href="https://geo.co.crook.or.us/surveys_legacy/" color="primary" size="small" variant="elevated">Legacy Survey Search Tool</v-btn>
 
     <v-spacer></v-spacer>

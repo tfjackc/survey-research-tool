@@ -35,15 +35,16 @@
           @change="mapping_store.maptaxlotGraphicsLayerCheck($event)"
       ></v-checkbox>
     </v-list-item>
-    <v-list-item>
-
-    </v-list-item>
+<!--    <v-list-item>-->
+<!--    </v-list-item>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMappingStore } from "~~/app/store/mapping";
 import { storeToRefs } from "pinia";
+import { useTheme } from 'vuetify';
+const theme = useTheme()
 const mapping_store = useMappingStore()
 const {
   returnCount,

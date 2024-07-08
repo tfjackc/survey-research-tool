@@ -2,14 +2,11 @@ import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import Graphic from "@arcgis/core/Graphic";
 import Color from "@arcgis/core/Color";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import {PictureMarkerSymbol} from "@arcgis/core/symbols";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
-import WebStyleSymbol from "@arcgis/core/symbols/WebStyleSymbol";
-import CIMSymbol from "@arcgis/core/symbols/CIMSymbol";
 
 // -------------- surveys -----------------
 export const surveyTemplate = {
@@ -29,7 +26,7 @@ export const surveyLayer = new FeatureLayer ({
 
 export const addressPointTemplate = {
     title: "Address: {full_address2}",
-    content: "<p>Maptaxlot: {maptaxlot}</p>",
+    content: "<p><strong>Maptaxlot:</strong> {maptaxlot}</p>",
 }
 export const addressPointLayer = new FeatureLayer ({
     url: "https://geo.co.crook.or.us/server/rest/services/publicApp/placesGroup/MapServer/2",
@@ -57,7 +54,7 @@ const taxlotRenderer = new SimpleRenderer({
 
 export const taxlotTemplate = {
     title: "{MAPTAXLOT}",
-    content: "Owner Name: {OWNER_NAME} <br /> Zone: {ZONE} <br /> Account: {ACCOUNT} <br /> PATS Link: <a href={PATS_LINK}>PATS Link</a> <br /> Tax Map Link: <a href={TAX_MAP_LINK}>Tax Map Link</a> <br /> Tax Card Link: <a href={TAX_CARD_LINK}>Tax Card Link</a>",
+    content: "<strong>Owner Name:</strong> {OWNER_NAME} <br /> <strong>Zone:</strong> {ZONE} <br /> <strong>Account:</strong> {ACCOUNT} <br /> <strong>PATS Link:</strong> <a href={PATS_LINK}>PATS Link</a> <br /> <strong>Tax Map Link:</strong> <a href={TAX_MAP_LINK}>Tax Map Link</a> <br /> <strong>Tax Card Link:</strong> <a href={TAX_CARD_LINK}>Tax Card Link</a>",
 }
 
 export const landGroup = new MapImageLayer({

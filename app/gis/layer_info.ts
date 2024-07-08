@@ -17,5 +17,11 @@ export const addressFields = [
 ]
 
 export const taxlotFields = [
-    "MAPTAXLOT"
+    "MAPTAXLOT",
+    "OWNER_NAME",
+    "ZONE",
+    "ACCOUNT",
+    "PATS_LINK",
+    "TAX_MAP_LINK",
+    "TAX_CARD_LINK"
 ]
