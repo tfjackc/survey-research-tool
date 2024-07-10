@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between p-4 shadow-md h-24"
+  <header class="flex items-center justify-between p-4 drop-shadow-xl shadow-md h-24"
           :class="{ 'bg-stone-800': theme.global.current.value.dark, 'bg-stone-700': !theme.global.current.value.dark }">
     <div class="flex items-center space-x-4">
       <NuxtImg src="/cc_logo.png" height="90" class="pt-2"/>

@@ -1,6 +1,6 @@
 <template>
     <v-list-item>
-      <h4 class="font-bold">Filter Search</h4>
+      <h4 class="font-thin italic text-2xl">Crook County Search</h4>
     </v-list-item>
   <v-list-item>
     <v-select label="Choose Layer"
