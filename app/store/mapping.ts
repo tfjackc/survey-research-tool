@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {initialize} from "~/gis/map";
+import {initialize} from "~~/app/gis/map";
 import MapView from "@arcgis/core/views/MapView";
 import {
     addressPointLayer,
@@ -14,11 +14,12 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
-} from "~/gis/layers";
+    sketchGraphicsLayer,
+} from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
-import {keys} from "~/gis/keys";
-import {addressFields, surveyFields, taxlotFields} from "~/gis/layer_info";
+import {keys} from "~~/app/gis/keys";
+import {addressFields, surveyFields, taxlotFields} from "~~/app/gis/layer_info";
 import Graphic from "@arcgis/core/Graphic";
 import FeatureSet from "@arcgis/core/rest/support/FeatureSet";
 import Query from "@arcgis/core/rest/support/Query";
@@ -81,6 +82,7 @@ export const useMappingStore = defineStore("mapping_store", {
         async addLayerToMap(layer: any) {
             if (view && layer) {
                 view.map.add(layer, 0);
+                view.map.add(sketchGraphicsLayer, 4);
             }
         },
 
@@ -103,28 +105,26 @@ export const useMappingStore = defineStore("mapping_store", {
             this.returnCount = 0;
             this.addressCount = 0;
             this.taxlotCount = 0;
-            console.log("step 1")
+
             surveyGraphicsLayer.graphics.removeAll();
             maptaxlotGraphicsLayer.graphics.removeAll();
             addressGraphicsLayer.graphics.removeAll();
             view.graphics.removeAll();
-            console.log("step 1.1")
+
             this.featureAttributes = [];
             const surveys = await this.openPromise(this.surveyData);
-            console.log("step 1.2")
+
             await this.iterateFeatureSet(surveys);
-            console.log("step 1.3")
+
             await this.fuseSearchData();
-            console.log("step 2")
+
             if (this.default_search == "Surveys") {
                 if (this.survey_filter.length > 0) {
                     this.returnCount += 1;
                     this.survey_whereClause = `${this.survey_filter} LIKE '%${this.searchedValue}%'`;
                     await this.surveyQuery();
-                    console.log("step 3")
                 } else {
                     await this.surveyQuery();
-                    console.log("step 4")
                 }
             } else if (this.default_search == "Addresses") {
                 this.returnCount = 0;
@@ -242,10 +242,7 @@ export const useMappingStore = defineStore("mapping_store", {
             try {
                 const feature_layer = await layer.createFeatureLayer();
                 await feature_layer.load();
-
                 // Wait for the feature layer to be loaded
-                //await watchUtils.whenOnce(feature_layer, "loaded");
-
                 // Now you can safely use the feature_layer
                 const queryResult = await this.queryLayer(
                     feature_layer,
@@ -253,7 +250,6 @@ export const useMappingStore = defineStore("mapping_store", {
                     this.taxlot_whereClause,
                     true
                 );
-
                 // Assuming queryResult is a FeatureSet with features
                 queryResult.features.forEach((feature: any) => {
                     this.taxlotCount += 1;
@@ -263,7 +259,7 @@ export const useMappingStore = defineStore("mapping_store", {
                         symbol: highlightFillSymbol,
                         popupTemplate: taxlotTemplate,
                     });
-
+                    console.log(feature.attributes)
                     maptaxlotGraphicsLayer.graphics.add(taxlot_graphic, 0);
                 });
 
@@ -308,7 +304,6 @@ export const useMappingStore = defineStore("mapping_store", {
                 const uniqueSurveysArray = Array.from(unique_surveys_set);
                 const whereClause = `cs IN ('${uniqueSurveysArray.join("', '")}')`;
                 console.log(whereClause);
-               // console.log(this.unique_surveys)
                 this.survey_whereClause = whereClause;
 
                 await this.surveyQuery();
@@ -327,16 +322,6 @@ export const useMappingStore = defineStore("mapping_store", {
             return Promise.all(data);
         },
 
-        // async iterateFeatureSet(featureSets: any[]) {
-        //     // Flatten the array of featureSets and extract features
-        //     const features = featureSets.flatMap(
-        //         (featureSet) => featureSet.features || []
-        //     );
-        //
-        //     features.forEach((feature: any) => {
-        //         this.featureAttributes.push(feature.attributes);
-        //     });
-        // },
         async iterateFeatureSet(featureSets: any[]) {
             // Directly use a map and flatten approach to transform and concatenate the attributes arrays.
             const featuresAttributes = featureSets.flatMap(featureSet => featureSet.features?.map((feature: { attributes: any; }) => feature.attributes) || []);
@@ -411,7 +396,7 @@ export const useMappingStore = defineStore("mapping_store", {
                             extent.union(survey.geometry.extent);
                             return extent;
                         },
-                        fset.features[0].geometry.extent
+                        fset.features[0]?.geometry.extent ?? {}
                     );
 
                     console.log("Graphics extent:", graphicsExtent);
@@ -427,7 +412,6 @@ export const useMappingStore = defineStore("mapping_store", {
                 console.error(error);
                 alert("An error occurred while processing the query result.");
             }
-            console.log("End of create graphics function count: " + this.returnCount);
         },
 
         async clearSurveyLayer() {
@@ -453,6 +437,10 @@ export const useMappingStore = defineStore("mapping_store", {
         async maptaxlotGraphicsLayerCheck(e: any) {
             this.maptaxlotGraphicsLayerCheckbox = e.target.checked;
             maptaxlotGraphicsLayer.visible = this.maptaxlotGraphicsLayerCheckbox;
+        },
+
+        async testingFunc() {
+            console.log("Testing function");
         }
-    },
+    }
 }); // end of store

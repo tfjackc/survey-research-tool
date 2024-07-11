@@ -1,0 +1,41 @@
+@import "https://js.arcgis.com/4.29/@arcgis/core/assets/esri/themes/light/main.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__nuxt, #__layout {
+    margin: 0;
+}
+.map-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    overflow: hidden; /* Ensure no overflow inside the map container */
+}
+.v-list-item .v-btn {
+    width: 100%;
+}
+.v-row {
+    padding: 20px;
+}
+
+.table_toggle {
+    margin-left: 20px;
+}
+a.v-btn {
+    max-width: 300px;
+    margin-left: 50px;
+}
+.v-col.v-col-auto {
+    margin-right: 10px;
+}
+.v-card {
+    max-width: 1500px;
+}
+.top-box {
+    margin-bottom: -30px;
+}
+.middle-box {
+    margin-top: -8px;
+    margin-bottom: -30px;
+}

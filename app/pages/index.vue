@@ -1,9 +1,8 @@
 <template>
-  <v-app id="inspire">
     <v-main class="bg-shades-dark-gray">
     <v-row>
         <v-col cols="4">
-          <v-sheet rounded="lg">
+          <v-sheet rounded="lg" class="elevation-2">
             <v-list rounded="lg">
               <Search />
               <v-divider class="my-2"></v-divider>
@@ -22,21 +21,10 @@
           <TableComponent />
         </v-col>
       </v-row>
-<!--      <v-navigation-drawer-->
-<!--          v-model="drawer"-->
-<!--          location="bottom"-->
-<!--          temporary-->
-<!--      >-->
-<!--        <TableComponent />-->
-<!--      </v-navigation-drawer>-->
-
     </v-main>
-  </v-app>
 </template>
 
 <script setup lang ="ts">
-import Search from "~/components/Search.vue";
-import Map from "~/components/Map.vue";
 import { useMappingStore } from "~/store/mapping";
 import {storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";

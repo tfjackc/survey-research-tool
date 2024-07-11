@@ -3,6 +3,7 @@
   <v-list-item>
     <v-checkbox
       class="top-box"
+      :class="{ 'text-stone-50': theme.global.current.value.dark, 'text-stone-900': !theme.global.current.value.dark }"
       :model-value="surveyLayerCheckbox"
       label="Survey Layer"
       @change="mapping_store.surveyLayerCheck($event)"
@@ -35,15 +36,14 @@
           @change="mapping_store.maptaxlotGraphicsLayerCheck($event)"
       ></v-checkbox>
     </v-list-item>
-    <v-list-item>
-
-    </v-list-item>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useMappingStore } from "~/store/mapping";
+import { useMappingStore } from "~~/app/store/mapping";
 import { storeToRefs } from "pinia";
+import { useTheme } from 'vuetify';
+const theme = useTheme()
 const mapping_store = useMappingStore()
 const {
   returnCount,

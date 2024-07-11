@@ -1,0 +1,36 @@
+<template>
+  <header class="flex items-center justify-between p-4 drop-shadow-xl shadow-md h-24"
+          :class="{ 'bg-stone-800': theme.global.current.value.dark, 'bg-stone-700': !theme.global.current.value.dark }">
+    <div class="flex items-center space-x-4">
+      <v-img width="90"
+      cover
+      src="/cc_logo.png">
+      </v-img>
+      <h2 class="text-2xl font-bold text-stone-50"
+         >Survey Research Tool</h2>
+      <v-btn href="https://geo.co.crook.or.us/surveys_legacy/" color="primary" size="small" variant="elevated">Legacy Survey Search Tool</v-btn>
+    </div>
+    <div class="flex items-center space-x-4">
+      <Disclaimer />
+      <v-btn variant="elevated"
+             color="success"
+             size="small"
+             @click="toggleTheme"
+             class="mr-5">
+        <v-icon>mdi-theme-light-dark</v-icon>
+        DARK/LIGHT
+      </v-btn>
+    </div>
+  </header>
+</template>
+
+<script lang="ts" setup>
+import { useTheme } from 'vuetify';
+const theme = useTheme();
+function toggleTheme() {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+}
+</script>
+
+<style scoped>
+</style>

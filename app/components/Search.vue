@@ -1,6 +1,6 @@
 <template>
     <v-list-item>
-      <h4>Filter Search</h4>
+      <h4 class="font-thin italic text-2xl">Crook County Search</h4>
     </v-list-item>
   <v-list-item>
     <v-select label="Choose Layer"
@@ -54,7 +54,7 @@
 <script setup lang="ts">
 
 import { storeToRefs } from "pinia";
-import { useMappingStore } from "~/store/mapping";
+import { useMappingStore } from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
 const { form, loading, layer_choices, survey_filter_choices, survey_filter ,default_search } = storeToRefs(mapping_store)
 const { searchedValue } = storeToRefs(mapping_store)
