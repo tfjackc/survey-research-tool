@@ -54,11 +54,6 @@ export async function initialize(container: HTMLDivElement) {
         // Create
         if (event.state === "start") {
             console.log("were here in the start");
-            //@ts-ignore
-            //console.log(event.graphics[0].geometry);
-            //@ts-ignore
-            //const surveys = queryFeatureLayer(event.graphics[0].geometry);
-
         }
         if (event.state === "complete"){
             //@ts-ignore
@@ -72,7 +67,12 @@ export async function initialize(container: HTMLDivElement) {
         // Change
         if (event.toolEventInfo && (event.toolEventInfo.type === "scale-stop" || event.toolEventInfo.type === "reshape-stop" || event.toolEventInfo.type === "move-stop")) {
             //@ts-ignore
-            queryFeatureLayer(event.graphics[0].geometry);
+            queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
+                const mappingStore= useMappingStore();
+                console.log("in the feature set function")
+                mappingStore.createGraphicLayer(featureSet);
+                mappingStore.pushData(featureSet);
+            });
         }
 
     });

@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between p-4 drop-shadow-xl shadow-md h-24"
           :class="{ 'bg-stone-800': theme.global.current.value.dark, 'bg-stone-700': !theme.global.current.value.dark }">
     <div class="flex items-center space-x-4">
-      <NuxtImg src="/cc_logo.png" height="90" width="auto" class="pt-2"/>
+      <NuxtImg src="/cc_logo.png" sizes="90" class="pt-2"/>
       <h2 class="text-2xl font-bold text-stone-50"
          >Survey Research Tool</h2>
       <v-btn href="https://geo.co.crook.or.us/surveys_legacy/" color="primary" size="small" variant="elevated">Legacy Survey Search Tool</v-btn>
@@ -30,5 +30,8 @@ function toggleTheme() {
 </script>
 
 <style scoped>
-/* Add any additional custom styles here */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
