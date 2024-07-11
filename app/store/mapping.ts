@@ -95,27 +95,12 @@ export const useMappingStore = defineStore("mapping_store", {
                     false
                 )
             );
-            // await this.addressData.push(this.queryLayer(addressPointLayer, addressFields, "Status ='Current'", false));
-            // await this.taxlotData.push(this.queryLayer(taxlotLayer, taxlotFields, "1=1", false))
         },
 
         async onSubmit() {
-            this.filteredData = [];
-            this.dataLoaded = false;
-            this.returnCount = 0;
-            this.addressCount = 0;
-            this.taxlotCount = 0;
-
-            surveyGraphicsLayer.graphics.removeAll();
-            maptaxlotGraphicsLayer.graphics.removeAll();
-            addressGraphicsLayer.graphics.removeAll();
-            view.graphics.removeAll();
-
-            this.featureAttributes = [];
+            await this.clearData();
             const surveys = await this.openPromise(this.surveyData);
-
             await this.iterateFeatureSet(surveys);
-
             await this.fuseSearchData();
 
             if (this.default_search == "Surveys") {
@@ -400,7 +385,7 @@ export const useMappingStore = defineStore("mapping_store", {
                     );
 
                     console.log("Graphics extent:", graphicsExtent);
-                    console.log("count in graphics made: " + this.returnCount);
+                    console.log("Graphics Created: " + this.returnCount);
                     // Zoom to the graphics extent
                     await view.goTo(graphicsExtent);
 
@@ -439,8 +424,19 @@ export const useMappingStore = defineStore("mapping_store", {
             maptaxlotGraphicsLayer.visible = this.maptaxlotGraphicsLayerCheckbox;
         },
 
-        async testingFunc() {
-            console.log("Testing function");
+        async clearData() {
+            this.filteredData = [];
+            this.dataLoaded = false;
+            this.returnCount = 0;
+            this.addressCount = 0;
+            this.taxlotCount = 0;
+
+            surveyGraphicsLayer.graphics.removeAll();
+            maptaxlotGraphicsLayer.graphics.removeAll();
+            addressGraphicsLayer.graphics.removeAll();
+            view.graphics.removeAll();
+
+            this.featureAttributes = [];
         }
     }
 }); // end of store

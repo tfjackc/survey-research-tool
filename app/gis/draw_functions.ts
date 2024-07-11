@@ -1,4 +1,3 @@
-import geometry from "@arcgis/core/geometry";
 import {surveyLayer} from "~/gis/layers";
 
 export function queryFeatureLayer(geometry: any) {

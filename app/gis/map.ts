@@ -4,6 +4,7 @@ const BASEMAP = "topo-vector";
 import { useMappingStore } from "~~/app/store/mapping";
 
 export async function initialize(container: HTMLDivElement) {
+    const mappingStore= useMappingStore();
     const [{ default: Map }, { default: MapView }, { default: Home }, {default: Sketch}, {default: reactiveUtils}] =
         await Promise.all([
             import("@arcgis/core/Map"),
@@ -49,26 +50,27 @@ export async function initialize(container: HTMLDivElement) {
     view.ui.add(sketch, "top-right");
 
     sketch.on("update", (event) => {
-        // if (event.state === "start") {
-        // }
-        if (event.state === "complete"){
-            //@ts-ignore
+        mappingStore.clearData();
+        if (event.state === "start" && event.graphics[0]) {
             queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
                 const mappingStore= useMappingStore();
                 mappingStore.createGraphicLayer(featureSet);
                 mappingStore.pushData(featureSet);
             });
+        }
+        if (event.state === "complete"){
+            if (event.graphics[0]) {
+                sketchGraphicsLayer.remove(event.graphics[0])
+            }
         }
         // Change
-        if (event.toolEventInfo && (event.toolEventInfo.type === "scale-stop" || event.toolEventInfo.type === "reshape-stop" || event.toolEventInfo.type === "move-stop")) {
-            //@ts-ignore
+        if (event.toolEventInfo && (event.toolEventInfo.type === "scale-stop" || event.toolEventInfo.type === "reshape-stop" || event.toolEventInfo.type === "move-stop") && event.graphics[0]) {
+            mappingStore.clearData();
             queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
-                const mappingStore= useMappingStore();
                 mappingStore.createGraphicLayer(featureSet);
                 mappingStore.pushData(featureSet);
             });
         }
-
     });
 
     await view.when();
