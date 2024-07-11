@@ -438,5 +438,9 @@ export const useMappingStore = defineStore("mapping_store", {
             this.maptaxlotGraphicsLayerCheckbox = e.target.checked;
             maptaxlotGraphicsLayer.visible = this.maptaxlotGraphicsLayerCheckbox;
         },
-    },
+
+        async testingFunc() {
+            console.log("Testing function");
+        }
+    }
 }); // end of store

@@ -36,8 +36,6 @@
           @change="mapping_store.maptaxlotGraphicsLayerCheck($event)"
       ></v-checkbox>
     </v-list-item>
-<!--    <v-list-item>-->
-<!--    </v-list-item>-->
   </div>
 </template>
 

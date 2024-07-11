@@ -14,4 +14,5 @@ onMounted(async () => {
     await app.createMap(mapDiv.value!);
     await app.addLayerToMap(surveyLayer);
 });
+
 </script>
