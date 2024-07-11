@@ -3,7 +3,7 @@
          color="success"
          size="small"
          @click="toggleTheme"
-         class="mr-5">
+         class="mr-2">
     <v-icon>mdi-theme-light-dark</v-icon>
   </v-btn>
 </template>
