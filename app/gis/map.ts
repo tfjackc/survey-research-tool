@@ -49,17 +49,12 @@ export async function initialize(container: HTMLDivElement) {
     view.ui.add(sketch, "top-right");
 
     sketch.on("update", (event) => {
-       // console.log("sketch update event", event);
-        //@ts-ignore
-        // Create
-        if (event.state === "start") {
-            console.log("were here in the start");
-        }
+        // if (event.state === "start") {
+        // }
         if (event.state === "complete"){
             //@ts-ignore
             queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
                 const mappingStore= useMappingStore();
-                console.log("in the feature set function")
                 mappingStore.createGraphicLayer(featureSet);
                 mappingStore.pushData(featureSet);
             });
@@ -69,7 +64,6 @@ export async function initialize(container: HTMLDivElement) {
             //@ts-ignore
             queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
                 const mappingStore= useMappingStore();
-                console.log("in the feature set function")
                 mappingStore.createGraphicLayer(featureSet);
                 mappingStore.pushData(featureSet);
             });
