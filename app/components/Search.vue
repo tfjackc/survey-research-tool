@@ -1,7 +1,20 @@
 <template>
-    <v-list-item>
-      <h4 class="font-thin italic text-2xl">Crook County Search</h4>
-    </v-list-item>
+  <v-list-item>
+  <div class="flex flex-row items-center pb-2">
+    <h4 class="font-thin italic text-2xl">Crook County Search</h4>
+    <v-btn
+           class="ml-auto"
+           variant="elevated"
+           color="white"
+           size="small"
+           width="50"
+           height="50"
+           @click="mapping_store.clearData()"
+           >
+    <Icon name="simple-line-icons:refresh" class="text-3xl text-gray-400"/>
+    </v-btn>
+  </div>
+  </v-list-item>
   <v-list-item>
     <v-select label="Choose Layer"
               v-model="default_search"

@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-icons',
     '@nuxtjs/tailwindcss',
+    "@nuxt/icon"
   ],
   css: ['@/assets/css/main.css'],
   vuetify: {
