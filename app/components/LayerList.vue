@@ -4,6 +4,7 @@
     <div class="font-thin italic text-2xl">Map Layers</div>
   </v-list-item>
   <v-list-item>
+    <div class="flex flex-row items-center">
     <v-checkbox
       class="top-box"
       :class="{ 'text-stone-50': theme.global.current.value.dark, 'text-stone-900': !theme.global.current.value.dark }"
@@ -11,6 +12,8 @@
       label="Survey Boundaries"
       @change="mapping_store.surveyLayerCheck($event)"
     ></v-checkbox>
+        <Icon name="mdi:tooltip-text-outline" class="text-2xl text-gray-400 ml-5"/>
+    </div>
   </v-list-item>
   <v-list-item>
     <v-checkbox
@@ -22,6 +25,7 @@
     ></v-checkbox>
   </v-list-item>
     <v-list-item>
+      <div class="flex flex-row">
       <v-checkbox
       class="middle-box"
       v-if="addressCount > 0"
@@ -29,6 +33,7 @@
       label="Address Points"
       @change="mapping_store.addressGraphicsLayerCheck($event)"
       ></v-checkbox>
+      </div>
     </v-list-item>
     <v-list-item>
       <v-checkbox
