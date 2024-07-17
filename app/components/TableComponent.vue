@@ -9,6 +9,7 @@
         class="elevation-2"
         :hover=true
         item-key="cs"
+        @mouseover:row="linkTableToMap"
       >
         <template v-slot:[`item.image`]="{ value }">
           <NuxtLink :to="`${value}`" target="_blank">
@@ -46,5 +47,10 @@ function rowClick(item: any, row: any) {
   if (imageValue) {
     window.open(imageValue, '_blank');
   }
+}
+
+function linkTableToMap(item: any, row: any) {
+  const cs = row.internalItem.cs || row.item.cs;
+  console.log("Survey #:", cs);
 }
 </script>
