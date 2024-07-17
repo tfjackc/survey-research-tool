@@ -14,7 +14,7 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
-    sketchGraphicsLayer,
+    sketchGraphicsLayer, hoverGraphicsLayer, hoverFillSymbol,
 } from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
@@ -53,7 +53,7 @@ export const useMappingStore = defineStore("mapping_store", {
         addressData: [] as any,
         taxlotData: [] as any,
         default_search: "Surveys" as string,
-        layer_choices: ["Surveys", "Addresses", "Maptaxlots"],
+        layer_choices: ["Surveys", "Addresses", "Map Tax Lots"],
         survey_filter: [] as string[],
         survey_filter_choices: {
             items: [
@@ -161,7 +161,7 @@ export const useMappingStore = defineStore("mapping_store", {
                     console.log(error);
                 }
 
-            } else if (this.default_search == "Maptaxlots") {
+            } else if (this.default_search == "Map Tax Lots") {
                 this.taxlot_whereClause = `MAPTAXLOT LIKE '%${this.searchedValue}%'`;
                 try {
                 const new_layer = await this.createTaxlotFeatureLayer(taxlotLayer);
@@ -244,7 +244,7 @@ export const useMappingStore = defineStore("mapping_store", {
                         symbol: highlightFillSymbol,
                         popupTemplate: taxlotTemplate,
                     });
-                    console.log(feature.attributes)
+                    //console.log(feature.attributes)
                     maptaxlotGraphicsLayer.graphics.add(taxlot_graphic, 0);
                 });
 
@@ -437,6 +437,41 @@ export const useMappingStore = defineStore("mapping_store", {
             view.graphics.removeAll();
 
             this.featureAttributes = [];
-        }
+        },
+
+        async highlightFeature(survey_number: string) {
+            console.log("Highlighting feature with survey number:", survey_number);
+            try {
+                // Wait for the feature layer to be loaded
+                // Now you can safely use the feature_layer
+                const queryResult = await this.queryLayer(
+                    surveyLayer,
+                    surveyFields,
+                    `cs = '${survey_number}'`,
+                    true
+                );
+                // Assuming queryResult is a FeatureSet with features
+                queryResult.features.forEach((feature: any) => {
+                    this.taxlotCount += 1;
+                    const hover_graphic = new Graphic({
+                        geometry: feature.geometry,
+                        attributes: feature.attributes,
+                        symbol: hoverFillSymbol,
+                        popupTemplate: surveyTemplate,
+                    });
+                    hoverGraphicsLayer.graphics.add(hover_graphic, 0);
+                });
+
+                view.map.add(hoverGraphicsLayer, 2);
+                return queryResult;
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        },
+
+        async clearHighlight() {
+            hoverGraphicsLayer.graphics.removeAll();
+        },
     }
 }); // end of store
