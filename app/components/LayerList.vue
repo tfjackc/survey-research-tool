@@ -20,6 +20,7 @@
     </div>
   </v-list-item>
   <v-list-item>
+    <div class="flex flex-row items-center">
     <v-checkbox
       class="middle-box"
       v-if="returnCount > 0"
@@ -27,6 +28,12 @@
       label="Search Results"
       @change="mapping_store.searchedLayerCheck($event)"
     ></v-checkbox>
+      <v-tooltip  v-if="returnCount > 0" text="Survey's returned based on search parameters">
+        <template v-slot:activator="{ props }">
+          <Icon v-bind="props" name="mdi:tooltip-text-outline" class="text-2xl text-gray-400 ml-5"/>
+        </template>
+      </v-tooltip>
+    </div>
   </v-list-item>
     <v-list-item>
       <div class="flex flex-row">
