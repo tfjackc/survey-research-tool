@@ -132,6 +132,19 @@ export const highlightFillSymbol = new SimpleFillSymbol({
     style: "solid",
 });
 
+export const hoverFillSymbol = new SimpleFillSymbol({
+    color: new Color([135,235,248,1]),
+    outline: new SimpleLineSymbol({
+        cap: "round",
+        color: new Color([0,122,194,1]),
+        join: "round",
+        miterLimit: 1,
+        style: "solid",
+        width: 1
+    }),
+    style: "solid",
+});
+
 export const mapIconSymbol = new PictureMarkerSymbol({
     url: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
     width: "25px",
@@ -158,4 +171,6 @@ export const circleSymbol = new SimpleMarkerSymbol({
 });
 
 export const sketchGraphicsLayer = new GraphicsLayer({});
+
+export const hoverGraphicsLayer = new GraphicsLayer({});
 // -------------- graphics -----------------

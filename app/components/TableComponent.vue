@@ -10,6 +10,7 @@
         :hover=true
         item-key="cs"
         @mouseover:row="linkTableToMap"
+        @mouseleave:row="clearHighlight"
       >
         <template v-slot:[`item.image`]="{ value }">
           <NuxtLink :to="`${value}`" target="_blank">
@@ -49,8 +50,14 @@ function rowClick(item: any, row: any) {
   }
 }
 
-function linkTableToMap(item: any, row: any) {
+async function linkTableToMap(item: any, row: any) {
   const cs = row.internalItem.cs || row.item.cs;
   console.log("Survey #:", cs);
+  await mapping_store.highlightFeature(cs);
+}
+
+async function clearHighlight() {
+  await mapping_store.clearHighlight();
+  console.log("off row")
 }
 </script>

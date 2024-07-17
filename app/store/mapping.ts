@@ -14,7 +14,7 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
-    sketchGraphicsLayer,
+    sketchGraphicsLayer, hoverGraphicsLayer, hoverFillSymbol,
 } from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
@@ -437,6 +437,42 @@ export const useMappingStore = defineStore("mapping_store", {
             view.graphics.removeAll();
 
             this.featureAttributes = [];
-        }
+        },
+
+        async highlightFeature(survey_number: string) {
+            console.log("Highlighting feature with survey number:", survey_number);
+            try {
+                // Wait for the feature layer to be loaded
+                // Now you can safely use the feature_layer
+                const queryResult = await this.queryLayer(
+                    surveyLayer,
+                    surveyFields,
+                    `cs = '${survey_number}'`,
+                    true
+                );
+                // Assuming queryResult is a FeatureSet with features
+                queryResult.features.forEach((feature: any) => {
+                    this.taxlotCount += 1;
+                    const hover_graphic = new Graphic({
+                        geometry: feature.geometry,
+                        attributes: feature.attributes,
+                        symbol: hoverFillSymbol,
+                        popupTemplate: surveyTemplate,
+                    });
+                    console.log(feature.attributes)
+                    hoverGraphicsLayer.graphics.add(hover_graphic, 0);
+                });
+
+                view.map.add(hoverGraphicsLayer, 2);
+                return queryResult;
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        },
+
+        async clearHighlight() {
+            hoverGraphicsLayer.graphics.removeAll();
+        },
     }
 }); // end of store
