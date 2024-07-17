@@ -53,7 +53,7 @@ export const useMappingStore = defineStore("mapping_store", {
         addressData: [] as any,
         taxlotData: [] as any,
         default_search: "Surveys" as string,
-        layer_choices: ["Surveys", "Addresses", "Maptaxlots"],
+        layer_choices: ["Surveys", "Addresses", "Map Tax Lots"],
         survey_filter: [] as string[],
         survey_filter_choices: {
             items: [
@@ -161,7 +161,7 @@ export const useMappingStore = defineStore("mapping_store", {
                     console.log(error);
                 }
 
-            } else if (this.default_search == "Maptaxlots") {
+            } else if (this.default_search == "Map Tax Lots") {
                 this.taxlot_whereClause = `MAPTAXLOT LIKE '%${this.searchedValue}%'`;
                 try {
                 const new_layer = await this.createTaxlotFeatureLayer(taxlotLayer);
@@ -244,7 +244,7 @@ export const useMappingStore = defineStore("mapping_store", {
                         symbol: highlightFillSymbol,
                         popupTemplate: taxlotTemplate,
                     });
-                    console.log(feature.attributes)
+                    //console.log(feature.attributes)
                     maptaxlotGraphicsLayer.graphics.add(taxlot_graphic, 0);
                 });
 
@@ -459,7 +459,6 @@ export const useMappingStore = defineStore("mapping_store", {
                         symbol: hoverFillSymbol,
                         popupTemplate: surveyTemplate,
                     });
-                    console.log(feature.attributes)
                     hoverGraphicsLayer.graphics.add(hover_graphic, 0);
                 });
 
