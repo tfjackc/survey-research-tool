@@ -12,7 +12,11 @@
       label="Survey Boundaries"
       @change="mapping_store.surveyLayerCheck($event)"
     ></v-checkbox>
-        <Icon name="mdi:tooltip-text-outline" class="text-2xl text-gray-400 ml-5"/>
+      <v-tooltip text="Layer consisting of all surveys in Crook County">
+        <template v-slot:activator="{ props }">
+        <Icon v-bind="props" name="mdi:tooltip-text-outline" class="text-2xl text-gray-400 ml-5"/>
+        </template>
+      </v-tooltip>
     </div>
   </v-list-item>
   <v-list-item>
