@@ -6,7 +6,6 @@
         items-per-page="5"
         :items="filteredData"
         :headers="headers"
-        class="elevation-2"
         :hover=true
         item-key="cs"
         @mouseover:row="linkTableToMap"
@@ -59,3 +58,6 @@ async function clearHighlight() {
   await mapping_store.clearHighlight();
 }
 </script>
+
+<style scoped>
+</style>
