@@ -43,7 +43,14 @@ export async function initialize(container: HTMLDivElement) {
     const sketch = new Sketch({
         layer: sketchGraphicsLayer,
         view: view,
-        creationMode: "update"
+        creationMode: "update",
+        visibleElements: {
+            selectionTools: {
+                "rectangle-selection": false,
+                "lasso-selection": false
+            },
+            settingsMenu: false
+        }
     });
 
     view.ui.add(homeWidget, "top-left");
