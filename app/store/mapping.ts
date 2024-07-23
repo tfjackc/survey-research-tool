@@ -425,6 +425,8 @@ export const useMappingStore = defineStore("mapping_store", {
         },
 
         async clearData() {
+            this.surveyLayerCheckbox = true;
+            surveyLayer.visible = this.surveyLayerCheckbox;
             this.filteredData = [];
             this.dataLoaded = false;
             this.returnCount = 0;
