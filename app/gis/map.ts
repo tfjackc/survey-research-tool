@@ -57,7 +57,6 @@ export async function initialize(container: HTMLDivElement) {
     view.ui.add(sketch, "top-right");
 
     sketch.on("update", (event) => {
-        mappingStore.clearData();
         if (event.state === "start" && event.graphics[0]) {
             queryFeatureLayer(event.graphics[0].geometry).then((featureSet) => {
                 const mappingStore= useMappingStore();
@@ -66,6 +65,7 @@ export async function initialize(container: HTMLDivElement) {
             });
         }
         if (event.state === "complete"){
+            //mappingStore.clearData();
             if (event.graphics[0]) {
                 sketchGraphicsLayer.remove(event.graphics[0])
             }

@@ -36,7 +36,9 @@ const headers: [] | any =
     // {title: 'Link', key: 'image', align: 'center'},
   ]
 
-function rowClick(item: any, row: any) {
+async function rowClick(item: any, row: any) {
+  const cs = row.internalItem.cs || row.item.cs;
+  await mapping_store.highlightFeature(cs, "clicked");
   // Access the image value
   const imageValue = row.internalItem.image || row.item.image;
   console.log("Image URL:", imageValue);
@@ -47,7 +49,8 @@ function rowClick(item: any, row: any) {
 
 async function linkTableToMap(item: any, row: any) {
   const cs = row.internalItem.cs || row.item.cs;
-  await mapping_store.highlightFeature(cs);
+  await mapping_store.highlightFeature(cs, "hover");
+
 }
 
 async function clearHighlight() {

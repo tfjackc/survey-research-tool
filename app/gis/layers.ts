@@ -133,7 +133,7 @@ export const highlightFillSymbol = new SimpleFillSymbol({
 });
 
 export const hoverFillSymbol = new SimpleFillSymbol({
-    color: new Color([135,235,248,1]),
+    color: new Color([135,235,248,0.6]),
     outline: new SimpleLineSymbol({
         cap: "round",
         color: new Color([0,122,194,1]),
@@ -143,6 +143,19 @@ export const hoverFillSymbol = new SimpleFillSymbol({
         width: 1
     }),
     style: "solid",
+});
+
+export const clickFillSymbol = new SimpleFillSymbol({
+    color: new Color([0, 0, 0, 0]), // Transparent fill
+    outline: new SimpleLineSymbol({
+        cap: "round",
+        color: new Color([0, 255, 255, 1]), // Cyan outline color
+        join: "round",
+        miterLimit: 1,
+        style: "solid",
+        width: 2 // Slightly thicker outline for selected feature
+    }),
+    style: "solid"
 });
 
 export const mapIconSymbol = new PictureMarkerSymbol({
@@ -173,4 +186,6 @@ export const circleSymbol = new SimpleMarkerSymbol({
 export const sketchGraphicsLayer = new GraphicsLayer({});
 
 export const hoverGraphicsLayer = new GraphicsLayer({});
+
+export const clickedGraphicsLayer = new GraphicsLayer({});
 // -------------- graphics -----------------
