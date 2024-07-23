@@ -11,11 +11,6 @@
         @mouseover:row="linkTableToMap"
         @mouseleave:row="clearHighlight"
       >
-        <template v-slot:[`item.image`]="{ value }">
-          <NuxtLink :to="`${value}`" target="_blank">
-            {{ value }}
-          </NuxtLink>
-        </template>
       </v-data-table>
     </v-fade-transition>
   </div>

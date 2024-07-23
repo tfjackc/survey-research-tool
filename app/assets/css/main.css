@@ -42,6 +42,7 @@ a.v-btn {
     margin-top: -8px;
     margin-bottom: -30px;
 }
-/*thead {*/
-/*    background-color: #44403c;*/
-/*}*/
+thead {
+    background-color: #44403c;
+    color: white;
+}
