@@ -26,6 +26,7 @@ import { storeToRefs } from "pinia";
 import {useMappingStore} from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
 const { filteredData } = storeToRefs(mapping_store)
+
 const headers: [] | any =
   [
     {title: 'Survey', key: 'cs', align: 'center'},
@@ -37,7 +38,7 @@ const headers: [] | any =
     {title: 'Subdivision', key: 'subdivision', align: 'center'},
     {title: 'Type', key: 'type', align: 'center'},
     {title: 'Description', key: 'identification', align: 'center'},
-    {title: 'Link', key: 'image', align: 'center'},
+    // {title: 'Link', key: 'image', align: 'center'},
   ]
 
 function rowClick(item: any, row: any) {
