@@ -14,7 +14,7 @@ import {
     highlightFillSymbol,
     simpleFillSymbol,
     circleSymbol,
-    sketchGraphicsLayer, hoverGraphicsLayer, hoverFillSymbol,
+    sketchGraphicsLayer, hoverGraphicsLayer, hoverFillSymbol, clickedGraphicsLayer, clickFillSymbol,
 } from "~~/app/gis/layers";
 import type {Ref} from "vue";
 import Fuse, {type FuseResultMatch} from "fuse.js";
@@ -425,6 +425,8 @@ export const useMappingStore = defineStore("mapping_store", {
         },
 
         async clearData() {
+            this.surveyLayerCheckbox = true;
+            surveyLayer.visible = this.surveyLayerCheckbox;
             this.filteredData = [];
             this.dataLoaded = false;
             this.returnCount = 0;
@@ -435,11 +437,11 @@ export const useMappingStore = defineStore("mapping_store", {
             maptaxlotGraphicsLayer.graphics.removeAll();
             addressGraphicsLayer.graphics.removeAll();
             view.graphics.removeAll();
-
+            await this.clearClicked();
             this.featureAttributes = [];
         },
 
-        async highlightFeature(survey_number: string) {
+        async highlightFeature(survey_number: string, source: string) {
             console.log("Highlighting feature with survey number:", survey_number);
             try {
                 // Wait for the feature layer to be loaded
@@ -453,16 +455,29 @@ export const useMappingStore = defineStore("mapping_store", {
                 // Assuming queryResult is a FeatureSet with features
                 queryResult.features.forEach((feature: any) => {
                     this.taxlotCount += 1;
-                    const hover_graphic = new Graphic({
-                        geometry: feature.geometry,
-                        attributes: feature.attributes,
-                        symbol: hoverFillSymbol,
-                        popupTemplate: surveyTemplate,
-                    });
-                    hoverGraphicsLayer.graphics.add(hover_graphic, 0);
+
+                    if (source == "hover") {
+                        const hover_graphic = new Graphic({
+                            geometry: feature.geometry,
+                            attributes: feature.attributes,
+                            symbol: hoverFillSymbol,
+                            popupTemplate: surveyTemplate,
+                        });
+                        hoverGraphicsLayer.graphics.add(hover_graphic, 0);
+                    } else if (source == "clicked") {
+                        this.clearClicked();
+                        const hover_graphic = new Graphic({
+                            geometry: feature.geometry,
+                            attributes: feature.attributes,
+                            symbol: clickFillSymbol,
+                            popupTemplate: surveyTemplate,
+                        });
+                        clickedGraphicsLayer.graphics.add(hover_graphic, 1);
+                    }
                 });
 
                 view.map.add(hoverGraphicsLayer, 2);
+                view.map.add(clickedGraphicsLayer, 3);
                 return queryResult;
 
             } catch (error) {
@@ -473,5 +488,9 @@ export const useMappingStore = defineStore("mapping_store", {
         async clearHighlight() {
             hoverGraphicsLayer.graphics.removeAll();
         },
+
+        async clearClicked() {
+            clickedGraphicsLayer.graphics.removeAll();
+        },
     }
-}); // end of store
+});

@@ -1,8 +1,12 @@
 <template>
   <v-list-item>
-  <div class="flex flex-row items-center pb-2">
-    <h4 class="font-thin italic text-2xl">Crook County Search</h4>
-    <v-btn
+
+      <div class="flex flex-row items-center pb-2">
+        <div class="flex flex-col">
+        <h4 class="font-thin italic text-2xl">Crook County Search</h4>
+        <div v-if="filteredData.length > 0" class="text-xs font-thin italic">*Click anywhere in table results to open survey</div>
+          </div>
+        <v-btn
            class="ml-auto"
            variant="elevated"
            color="white"
@@ -11,9 +15,9 @@
            height="50"
            @click="mapping_store.clearData()"
            >
-    <Icon name="simple-line-icons:refresh" class="text-3xl text-gray-400"/>
-    </v-btn>
-  </div>
+          <Icon name="simple-line-icons:refresh" class="text-3xl text-gray-400"/>
+        </v-btn>
+      </div>
   </v-list-item>
   <v-list-item>
     <v-select label="Choose Layer"
@@ -69,7 +73,7 @@
 import { storeToRefs } from "pinia";
 import { useMappingStore } from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
-const { form, loading, layer_choices, survey_filter_choices, survey_filter ,default_search } = storeToRefs(mapping_store)
+const { form, loading, layer_choices, survey_filter_choices, survey_filter, default_search, filteredData } = storeToRefs(mapping_store)
 const { searchedValue } = storeToRefs(mapping_store)
 function required (v: any) {
   return !!v || 'Field is required'

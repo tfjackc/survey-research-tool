@@ -11,11 +11,6 @@
         @mouseover:row="linkTableToMap"
         @mouseleave:row="clearHighlight"
       >
-        <template v-slot:[`item.image`]="{ value }">
-          <NuxtLink :to="`${value}`" target="_blank">
-            {{ value }}
-          </NuxtLink>
-        </template>
       </v-data-table>
     </v-fade-transition>
   </div>
@@ -26,6 +21,7 @@ import { storeToRefs } from "pinia";
 import {useMappingStore} from "~~/app/store/mapping";
 const mapping_store = useMappingStore()
 const { filteredData } = storeToRefs(mapping_store)
+
 const headers: [] | any =
   [
     {title: 'Survey', key: 'cs', align: 'center'},
@@ -37,10 +33,12 @@ const headers: [] | any =
     {title: 'Subdivision', key: 'subdivision', align: 'center'},
     {title: 'Type', key: 'type', align: 'center'},
     {title: 'Description', key: 'identification', align: 'center'},
-    {title: 'Link', key: 'image', align: 'center'},
+    // {title: 'Link', key: 'image', align: 'center'},
   ]
 
-function rowClick(item: any, row: any) {
+async function rowClick(item: any, row: any) {
+  const cs = row.internalItem.cs || row.item.cs;
+  await mapping_store.highlightFeature(cs, "clicked");
   // Access the image value
   const imageValue = row.internalItem.image || row.item.image;
   console.log("Image URL:", imageValue);
@@ -51,7 +49,8 @@ function rowClick(item: any, row: any) {
 
 async function linkTableToMap(item: any, row: any) {
   const cs = row.internalItem.cs || row.item.cs;
-  await mapping_store.highlightFeature(cs);
+  await mapping_store.highlightFeature(cs, "hover");
+
 }
 
 async function clearHighlight() {
