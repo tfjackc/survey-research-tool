@@ -1,11 +1,11 @@
 <template>
-  <v-col cols="auto">
+
     <v-dialog
       transition="dialog-top-transition"
       width="auto"
     >
       <template v-slot:activator="{ props }">
-        <v-btn v-bind="props" color="primary" size="small" variant="elevated">Disclaimer</v-btn>
+        <button v-bind="props" class="text-white hover:bg-stone-800 rounded-sm font-bold px-4 py-2 text-sm underline underline-offset-8 hover:no-underline flex items-center justify-center">DISCLAIMER</button>
       </template>
       <template v-slot:default="{ isActive }">
         <v-card>
@@ -28,6 +28,6 @@
         </v-card>
       </template>
     </v-dialog>
-  </v-col>
+
 </template>
 

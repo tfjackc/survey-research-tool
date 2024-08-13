@@ -1,11 +1,9 @@
 <template>
-  <v-btn variant="elevated"
-         color="success"
-         size="small"
+  <button
          @click="toggleTheme"
-         class="mr-2">
+         class="bg-green-500 text-white px-2 py-1.5 rounded hover:bg-blue-700 text-sm">
     <v-icon>mdi-theme-light-dark</v-icon>
-  </v-btn>
+  </button>
 </template>
 
 <script setup lang="ts">

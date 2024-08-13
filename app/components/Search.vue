@@ -1,6 +1,5 @@
 <template>
   <v-list-item>
-
       <div class="flex flex-row items-center pb-2">
         <div class="flex flex-col">
         <h4 class="font-thin italic text-2xl">Crook County Search</h4>
