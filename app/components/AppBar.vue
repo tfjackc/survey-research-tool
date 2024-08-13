@@ -5,18 +5,25 @@
       <v-img width="90" cover src="/cc_logo.png" class="pt-2 mt-2"></v-img>
       <h2 class="text-2xl font-bold text-stone-50"
          >Survey Research Tool</h2>
-      <v-btn href="https://geo.co.crook.or.us/surveys_legacy/" color="primary" size="small" variant="elevated">Legacy Survey Search Tool</v-btn>
     </div>
+    <div class="hidden sm:flex items-center space-x-4">
+      <LegacyToolButton />
     <div class="flex items-center space-x-4">
       <Disclaimer />
       <ThemeToggle />
     </div>
+    </div>
+    <div class="sm:flex sm:hidden">
+      <SmallScreenMenu />
+    </div>
+
   </header>
 </template>
 
 <script lang="ts" setup>
 import { useTheme } from 'vuetify';
 import ThemeToggle from "~/components/ThemeToggle.vue";
+import LegacyToolButton from "~/components/LegacyToolButton.vue";
 const theme = useTheme();
 </script>
 

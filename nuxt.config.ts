@@ -2,12 +2,14 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+
   devtools: {
     enabled: true,
     timeline: {
       enabled: true,
     },
   },
+
   modules: [
     '@pinia/nuxt',
     'vuetify-nuxt-module',
@@ -16,7 +18,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     "@nuxt/icon"
   ],
+
   css: ['@/assets/css/main.css'],
+
   vuetify: {
     vuetifyOptions: {
       theme: {
@@ -35,4 +39,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-08-13',
 })
