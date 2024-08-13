@@ -1,7 +1,7 @@
 <template>
   <button
          @click="toggleTheme"
-         class="bg-green-500 text-white px-2 py-1.5 rounded hover:bg-blue-700 text-sm">
+         class="bg-stone-800 text-white font-bold py-2 px-2 rounded hover:bg-stone-950 text-sm drop-shadow-xl">
     <v-icon>mdi-theme-light-dark</v-icon>
   </button>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
-        <button id="menu-activator" class="bg-stone-800 text-white font-bold py-2 px-2 rounded hover:bg-blue-700 text-sm">
-          <Icon size="2em" name="iconamoon:apps" />
+        <button id="menu-activator" class="bg-stone-800 text-white font-bold pt-1 px-2 rounded hover:bg-stone-950 text-sm drop-shadow-xl">
+          <Icon size="2em" name="iconamoon:menu-burger-horizontal-fill" />
         </button>
     <v-menu activator="#menu-activator">
         <v-list style="background-color: #44403c;">
