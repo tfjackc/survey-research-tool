@@ -5,16 +5,15 @@
         <div class="rounded-lg p-4">
           <Search />
           <hr class="my-2 border-gray-300" />
-          <div class="hidden lg:block">
             <LayerList />
-          </div>
         </div>
       </div>
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 h-96 lg:h-full lg:min-h-screen"> <!-- Adjust height as needed -->
         <ClientOnly>
           <Map />
         </ClientOnly>
       </div>
+
     </div>
     <div class="mt-4">
       <TableComponent />
