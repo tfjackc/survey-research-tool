@@ -8,7 +8,7 @@
             <LayerList />
         </div>
       </div>
-      <div class="lg:col-span-3 h-96 lg:h-full lg:min-h-screen"> <!-- Adjust height as needed -->
+      <div class="lg:col-span-3 h-96 lg:h-full"> <!-- Adjust height as needed -->
         <ClientOnly>
           <Map />
         </ClientOnly>
