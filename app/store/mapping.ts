@@ -422,6 +422,7 @@ export const useMappingStore = defineStore("mapping_store", {
         async maptaxlotGraphicsLayerCheck(e: any) {
             this.maptaxlotGraphicsLayerCheckbox = e.target.checked;
             maptaxlotGraphicsLayer.visible = this.maptaxlotGraphicsLayerCheckbox;
+            console.log("taxlot count: " + this.taxlotCount)
         },
 
         async clearData() {
@@ -442,7 +443,6 @@ export const useMappingStore = defineStore("mapping_store", {
         },
 
         async highlightFeature(survey_number: string, source: string) {
-            console.log("Highlighting feature with survey number:", survey_number);
             try {
                 // Wait for the feature layer to be loaded
                 // Now you can safely use the feature_layer
@@ -454,7 +454,6 @@ export const useMappingStore = defineStore("mapping_store", {
                 );
                 // Assuming queryResult is a FeatureSet with features
                 queryResult.features.forEach((feature: any) => {
-                    this.taxlotCount += 1;
 
                     if (source == "hover") {
                         const hover_graphic = new Graphic({
