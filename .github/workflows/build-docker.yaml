@@ -12,7 +12,7 @@ jobs:
       - name: build image
         run: docker build -t tfjackc/web-apps:surveyapp-v1 .
       - name: push to docker hub
-        run:
+        run: |
           docker login -u tfjackc -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push tfjackc/web-apps:surveyapp-v1
 
