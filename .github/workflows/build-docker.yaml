@@ -9,11 +9,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: build image
+
+      - name: Build image
         run: docker build -t tfjackc/web-apps:surveyapp-v1 .
-      - name: push to docker hub
-        run: |
-          docker login -u tfjackc -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push tfjackc/web-apps:surveyapp-v1
 
+      - name: Login to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u tfjackc --password-stdin
 
+      - name: Push to Docker Hub
+        run: docker push tfjackc/web-apps:surveyapp-v1
